@@ -1,20 +1,11 @@
 package main
 
 import (
-	"github.com/bblfsh/sdk/protocol"
-
 	"github.com/bblfsh/erlang-driver/driver/normalizer"
+
+	"gopkg.in/bblfsh/sdk.v1/sdk/driver"
 )
 
-var version string
-var build string
-
 func main() {
-	d := protocol.Driver{
-		Version:  version,
-		Build:    build,
-		ToNoder:  normalizer.NativeToNoder,
-		Annotate: normalizer.AnnotationRules,
-	}
-	d.Exec()
+	driver.Run(normalizer.ToNode, normalizer.Transformers)
 }
